@@ -55,3 +55,14 @@ profile = "black"
 multi_line_output = 3
 balanced_wrapping = true
 line_length = 100
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra"
+testpaths = [
+    "pytest_tests",
+]
+
+[tool.ward]
+path = ["ward_tests"]
+progress-style = ["bar"]
