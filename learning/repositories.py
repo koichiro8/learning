@@ -38,3 +38,6 @@ class TodoRepository:
 
     async def delete(self, id: int, session: AsyncSession):
         await session.execute(delete(Todo).filter(Todo.id == id))
+
+    async def delete_done(self, session: AsyncSession):
+        await session.execute(delete(Todo).filter(Todo.done == True))  # noqa

@@ -45,3 +45,9 @@ async def done(id: int, session: AsyncSession = Depends(session_context)):
 async def delete_todo(id: int, session: AsyncSession = Depends(session_context)):
     await repo.delete(id, session)
     return None
+
+
+@todo_router.delete("", status_code=204)
+async def delete_done_todo(session: AsyncSession = Depends(session_context)):
+    await repo.delete_done(session)
+    return None
