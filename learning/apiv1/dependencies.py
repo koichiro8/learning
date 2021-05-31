@@ -6,10 +6,12 @@ logger = Logger.with_default_handlers(name=__file__)
 
 
 async def session_context():
-    async with get_session() as session:
-        try:
-            yield session
-            await session.commit()
-        except Exception as ex:
-            await logger.exception(ex)
-            await session.rollback()
+    session = get_session()
+    try:
+        yield session
+        await session.commit()
+    except Exception as ex:
+        await logger.exception(ex)
+        await session.rollback()
+    finally:
+        await session.close()

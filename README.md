@@ -9,6 +9,7 @@ Pythonのテストフレームワークの[Ward](https://ward.readthedocs.io/en/
 - テストの書き方
 - Fixture
 - Mock
+- Assert
 - Table driven testing (Parameterised testing)
 - Coverage
 - Mark
@@ -20,7 +21,7 @@ Pythonのテストフレームワークの[Ward](https://ward.readthedocs.io/en/
 
 ## 結論
 
-Pytest最高ですね。
+Pytestに影響を受けていると記載されている通り、Pytestを使ったことがあれば簡単に使える。まだ開発されたばかりということもあり、Pytestから乗り換えるほどのものではない。やはり、Pytestは最高ですね。
 
 ## 注意点
 
@@ -37,6 +38,15 @@ Wardのclickのバージョン制約とFastAPIのuvicornのclickのバージョ�
   - asyncioのevent_loopの問題？
 - builtinのfixtureがない。
 - 使用するfixtureは明示的に指定する。conftest.pyのように暗黙に使われることがない。良いような悪いような。
+
+## Mock
+
+- pytest-mockのようなものはない。
+
+## Assert
+
+- `ward.expect`にヘルパーがある。
+- `pytest.raises`相当のExceptionを評価する`ward.raises`というものがある。
 
 ## Table driven testing (Parameterised testing)
 
@@ -71,3 +81,5 @@ Wardのclickのバージョン制約とFastAPIのuvicornのclickのバージョ�
 - pyproject.tomlで設定可能。
 
 ## Tox
+
+- Pytestと特に違いはない。

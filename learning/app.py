@@ -21,10 +21,10 @@ async def todo_exception_handler(request: Request, exc: TodoError):
     return JSONResponse(status_code=status_code, content={"code": exc.code, "detail": str(exc)})
 
 
-def create_app():
+def create_app(db_url: str = ""):
     app = FastAPI()
     app.add_api_route("/", index)
     app.include_router(todo_router)
     app.add_exception_handler(TodoError, todo_exception_handler)
-    initialize_session(get_enigne(os.environ["DB_URL"]))
+    initialize_session(get_enigne(os.environ["DB_URL"] if not db_url else db_url))
     return app

@@ -7,11 +7,9 @@ from learning.database import get_session
 from learning.entities import Todo
 from learning.repositories import TodoRepository
 from learning.schemas import CreateTodo
-from ward_tests.fixtures import db_session
 
-
-def create_todo(cnt: int):
-    return [Todo(title=f"todo no.{i}") for i in range(cnt)]
+from .fixtures import db_session
+from .utils import create_todo
 
 
 @test("get todos", tags=["integration"])

@@ -35,14 +35,11 @@ repos:
       - id: prettier
         args: [--parser, json]
         types: [json]
-  - repo: local
-    hooks:
-      - id: mypy
-        name: mypy
-        entry: mypy
-        language: python
-        types: [python]
-        exclude: "pytest_tests|ward_tests"
+  # - repo: https://github.com/pre-commit/mirrors-mypy
+  #   rev: v0.812
+  #   hooks:
+  #     - id: mypy
+  #       args: [--config-file, mypy.ini]
 
 default_language_version:
   python: python3.9

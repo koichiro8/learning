@@ -1,7 +1,9 @@
 import os
 
+from httpx import AsyncClient
 from ward import fixture
 
+from learning.app import create_app
 from learning.database import get_enigne, initialize_session
 from learning.entities import Base
 
@@ -14,3 +16,8 @@ async def db_session():
         await conn.run_sync(Base.metadata.create_all)
 
     initialize_session(engine)
+
+
+@fixture(scope="global")
+def api_test_client():
+    return AsyncClient(app=create_app(os.environ["TEST_DB_URL"]), base_url="http://test")

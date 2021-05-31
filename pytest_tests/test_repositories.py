@@ -1,26 +1,16 @@
 from datetime import datetime
 
 import pytest
-from sqlalchemy import delete, select
+from sqlalchemy import select
 
 from learning.database import get_session
 from learning.entities import Todo
 from learning.repositories import TodoRepository
 from learning.schemas import CreateTodo
 
+from .utils import create_todo
+
 pytestmark = [pytest.mark.asyncio, pytest.mark.integration]
-
-
-def create_todo(cnt: int):
-    return [Todo(title=f"todo no.{i}") for i in range(cnt)]
-
-
-@pytest.fixture(autouse=True)
-async def finalizer():
-    yield
-    async with get_session() as session:
-        await session.execute(delete(Todo))
-        await session.commit()
 
 
 async def test_get_todos():
